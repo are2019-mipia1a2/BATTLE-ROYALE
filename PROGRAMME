@@ -1,3 +1,5 @@
+1.
+
 %matplotlib inline     
 # ^Sans animations
 # %matplotlib notebook 
@@ -7,5 +9,211 @@ import matplotlib.pyplot as plt
 from matplotlib import animation
 
 
+2.
 
+n=1000
+#chiffre de base dcorrespondant a 1000 personnes
+
+p = {'Content' : 0.3,
+     'Moyen content' : 0.4,
+     'Pas content' : 0.1,
+     'Très content' : 0.2}
+#p=repartition aléatoire d'un avis d'une personne essayant le jeu pour la première fois
+
+pC={'Content' : 0.55,'Moyen content' : 0.15,'Pas content' : 0,'Très content' : 0.3}
+pMC={'Content' : 0.7,'Moyen content' : 0,'Pas content' : 0.3,'Très content' : 0}
+pTC={'Content' : 0.2,'Moyen content' : 0,'Pas content' : 0,'Très content' : 0.8}
+pPC={'Content' : 0,'Moyen content' : 0,'Pas content' : 1,'Très content' : 0}
+#p1,p2,p3,p4= probabilités qu'une personne qui a déja un avis conserve son avis
+
+pp={'Gamer' : 0.4,
+   'Joueur lambda': 0.599,
+   'Influenceur':0.001}
+#pp= répartition aléatoire du type de joueur arrivant sur la plateforme indiquant son taux d'attirance 
+
+potes={'Gamer':15,
+      'Joueur lambda':5,
+      'Influenceur': 100000}
+
+3.
+
+def opinion_utilisateur(p):
+    u = np.random.random()
+    s = 0
+    for k in p.keys():
+        s += p[k]
+        if u < s:
+            return k
+        
+print(opinion_utilisateur(p))
+
+4.
+
+def opinion(n,p):
+    z= {'Content' : 0,
+     'Moyen content' : 0,
+     'Pas content' : 0,
+     'Très content' : 0}
+    for i in range(0,n):
+        z[opinion_utilisateur(p)]+=1
+    return z
+print(opinion(1000,p))
+
+5.
+
+def opinion_suivante(n,p,pC,pMC,pTC,pPC):
+    z= {'Content' : 0,
+     'Moyen content' : 0,
+     'Pas content' : 0,
+     'Très content' : 0}
+    zz=opinion(n,p)
+    for i in zz:
+        if i=='Content':
+            for j in range(0,zz[i]):
+                z[opinion_utilisateur(pC)]+=1
+        if i=='Moyen content':
+            for k in range(0,zz[i]):
+                z[opinion_utilisateur(pMC)]+=1
+        if i=='Très content':
+            for l in range(0,zz[i]):
+                z[opinion_utilisateur(pTC)]+=1
+        if i=='Pas content':
+            for m in range(0,zz[i]):
+                z[opinion_utilisateur(pPC)]+=1
+    return z
+                
+            
+    
+
+opinion_suivante(n,p,pC,pMC,pTC,pPC)
+
+6.
+
+def opinion_suivante_detail(n,p,pC,pMC,pTC,pPC):
+    z1= {'Content' : 0,
+     'Moyen content' : 0,
+     'Pas content' : 0,
+     'Très content' : 0}
+    z2= {'Content' : 0,
+     'Moyen content' : 0,
+     'Pas content' : 0,
+     'Très content' : 0}
+    z3= {'Content' : 0,
+     'Moyen content' : 0,
+     'Pas content' : 0,
+     'Très content' : 0}
+    z4= {'Content' : 0,
+     'Moyen content' : 0,
+     'Pas content' : 0,
+     'Très content' : 0}
+    zz=opinion(n,p)
+    for i in zz:
+        if i=='Content':
+            for j in range(0,zz[i]):
+                z1[opinion_utilisateur(pC)]+=1
+        if i=='Moyen content':
+            for k in range(0,zz[i]):
+                z2[opinion_utilisateur(pMC)]+=1
+        if i=='Très content':
+            for l in range(0,zz[i]):
+                z3[opinion_utilisateur(pTC)]+=1
+        if i=='Pas content':
+            for m in range(0,zz[i]):
+                z4[opinion_utilisateur(pPC)]+=1
+    return ({'Content':z1,
+             'Moyen content':z2,
+             'Très content':z3,
+             'Pas content':z4})
+
+opinion_suivante_detail(n,p,pC,pMC,pTC,pPC)
+
+7.
+
+def opinion_m_suivante(n,p,pC,pMC,pTC,pPC,m):
+    j=opinion(n,p)
+    keys=['Content','Moyen content','Très content']
+    M=[]
+    M.append([j[k] for k in keys])
+    for i in range(1,m):
+        j= opinion_suivante(n,p,pC,pMC,pTC,pPC)
+        M.append([j[k] for k in keys])
+    return M
+
+opinion_m_suivante(n,p,pC,pMC,pTC,pPC,10)
+
+8.
+
+m=100
+M=opinion_m_suivante(n,p,pC,pMC,pTC,pPC,m)
+a=('Content','Moyen content','Très content','Pas content')
+
+def graphe_opinion(M,a):
+    plt.figure()
+    plt.plot(M)
+    plt.legend([i for i in a])
+    plt.xlabel("Mois")
+    plt.ylabel("Opinion")
+    plt.show()
+    return
+
+graphe_opinion(M,a)
+
+
+9.
+
+def type_joueur(pp):
+    u = np.random.random()
+    s = 0
+    for k in p.keys():
+        s += p[k]
+        if u < s:
+            return k
+
+print(type_joueur(pp))
+
+10.
+
+def joueurs(n,pp):
+    z={'Gamer' : 0,
+   'Joueur lambda': 0,
+    'Influenceur':0}
+    for i in range(0,n):
+        z[type_joueur(p)]+=1
+    return z
+print(joueurs(1000,pp))
+
+11.
+
+def nouvelle_communauté(n,p,pp):
+    m=0
+    j=joueurs(n,pp)
+    g=opinion(j['Gamer'],p)
+    h=opinion(j['Joueur lambda'],p)
+    k=opinion(j['Influenceur'],p)
+    for i in g:
+        if i=='Content':
+            m=m+10*g[i]
+        if i=='Très content':
+            m=m+15*g[i]
+        if i=='Moyen content':
+            m=m+5*g[i]
+    for l in h:
+        if l=='Content':
+            m=m+3*h[l]
+        if l=='Très content':
+            m=m+5*h[l]
+        if l=='Moyen content':
+            m=m+1*h[l]
+    for o in k:
+        if o=='Content':
+            m=m+70000*k[o]
+        if o=='Très content':
+            m=m+100000*k[o]
+        if o=='Moyen content':
+            m=m+30000*k[o]
+    return  {'nouveaux':m,
+             'Gamer':g,
+             'Joueur lambda':h,
+             'Influenceur':k}
+nouvelle_communauté(1000,p,pp)
 
