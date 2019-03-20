@@ -333,5 +333,40 @@ def nouveaux_utilisateurs_publicite(n, p2):
 nouveaux_utilisateurs_publicite(n, p2)
             
         
-        
+-----------------------------------------------------------------------------------------------------------------------------------------
+16.
+
+def opinion_nieme_generation(pi,n):
+    G = nx.random_geometric_graph(pi, 0.125)
+    H = nx.random_geometric_graph(pi, 0.125)
+    DD = dict()
+    P = dict()
+    for i in range(0,pi) :
+        pos[i] = random.uniform(-0.025, 1.025), random.uniform(-0.025, 1.025)
+        DD[i] = opinion_utilisateur(p)
+        P[i] = pos[i]
+    plt.figure(figsize=(8, 8))
+    
+    nx.draw_networkx_nodes(G, pos,
+                           nodelist = [i for i in range(0,pi)],
+                           node_size=20,
+                           node_color= [E[DD[i]] for i in range(0,pi)])
+
+    plt.xlim(-0.05, 1.05)
+    plt.ylim(-0.05, 1.05)
+    plt.axis('off')
+    plt.show()
+    
+    
+    for i in range(0,n):
+        DD = opinion_utilisateur_suivant(DD,p,pC,pTC,pMC,pPC)
+    nx.draw_networkx_nodes(H,P,nodelist = [i for i in range(0,pi)], node_size = 20, node_color = [E[DD[i]] for i in range(0,pi)])
+    
+    plt.xlim(-0.05, 1.05)
+    plt.ylim(-0.05, 1.05)
+    plt.axis('off')
+    plt.show()
+    
+    
+    -------------------------------------------------------------------------------------------------------------------------------------
     
