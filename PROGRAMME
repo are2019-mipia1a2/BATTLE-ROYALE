@@ -223,7 +223,7 @@ nouvelle_communauté(1000,p,pp)
 
 
 -----------------------------------------------------------------------------------------------------------
-
+12.
 #GRAPHIQUE MODELISANT L'OPINION DE CHAQUE PERSONNE DE LA COMMUNAUTE POUR UN SEUL JEU
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -262,7 +262,7 @@ plt.axis('off')
 plt.show()
 
 ---------------------------------------------------------------------------------------------------------
-
+13.
 def opinion_utilisateur_suivant(D,p,pC,pTC,pMC,pPC):
     for i in D:
         if D[i]=='Content':
@@ -274,3 +274,64 @@ def opinion_utilisateur_suivant(D,p,pC,pTC,pMC,pPC):
         if D[i]=='Pas content':
             D[i]=opinion_utilisateur(pPC)
         return D
+14.
+%matplotlib inline     
+# ^Sans animations
+# %matplotlib notebook 
+# ^Avec animations
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation
+
+
+import random
+
+p1 = 0.15
+n = 1000
+
+
+def influence_publicite(n, p1):
+    '''determine pour chaque personne dans une communaute de n personnes si elle cliquera sur la publicite ou non'''
+    D = {"Clic" : 0, "Non Clic" : 0}
+    for i in range(0,n):
+        m = random.uniform(0.0, 1.0)
+        if m >= p1 :
+            D["Non Clic"] += 1
+        else :
+            D["Clic"] += 1
+    return D
+influence_publicite(n,p)
+
+15.
+
+import random
+
+p1 = 0.15
+n = 1000
+p2 = 0.45
+
+
+
+
+
+
+def nouveaux_utilisateurs_publicite(n, p2):
+    '''determine le nombre de nouveaux utilisateurs du jeu grace a la publicite parmi une communaute de n personnes
+    ayant clique sur la publicite'''
+    D1 = {"Nouveaux Joueurs" : 0, "Non Joueurs" : 0}
+    D = influence_publicite(n, p1)
+    print(D)
+    for i in range(0, D["Clic"]):
+        m = random.uniform(0.0, 1.0)
+        if m >= p2 :
+            D1["Non Joueurs"] += 1
+        else : 
+            D1["Nouveaux Joueurs"] += 1
+        
+    return D1
+
+nouveaux_utilisateurs_publicite(n, p2)
+            
+        
+        
+    
