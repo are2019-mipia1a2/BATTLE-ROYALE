@@ -262,3 +262,15 @@ plt.axis('off')
 plt.show()
 
 ---------------------------------------------------------------------------------------------------------
+
+def opinion_utilisateur_suivant(D,p,pC,pTC,pMC,pPC):
+    for i in D:
+        if D[i]=='Content':
+            D[i]= opinion_utilisateur(pC)
+        if D[i]=='Très content':
+            D[i]=opinion_utilisateur(pTC)
+        if D[i]=='Moyen content':
+            D[i]= opinion_utilisateur(pMC)
+        if D[i]=='Pas content':
+            D[i]=opinion_utilisateur(pPC)
+        return D
