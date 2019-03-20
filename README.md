@@ -24,3 +24,9 @@ très content, content, moyennement content, pas content. Nous avons également 
 que nous allons utiliser pour concrétiser notre projet. 
 Durant les prochaines séances nous prévoyons de faire le travail que nous avons réalisé pour une communauté, sur nos trois
 communautés que sont fortnite, apex, et pubg. Nous allons également approfondir nos connaissances sur networkX.
+
+**20 mars :**
+
+Au cours de cette deuxième séance, nous avons établi les conditions de notre plateforme globale. Bien que, ce ne soit pas extrêmement réaliste, nous avons décidé de choisir une population globale de 2000 personnes qui seront dispatchées sur les 3 plateformes de jeux ainsi que sur la "plateforme extérieur" qui correspond aux individus ne faisant pas partie d'une des 3 communautés. 
+De plus, nous avons approfondi nos recherches sur le site NetworkX, qui nous a permis d'obtenir un aperçu de la modélisation que nous allons avoir. Nous avons obtenu un graphe, comportant 2000 points, correspondant aux individus. Les points sont de couleurs différentes selon la satisfaction des joueurs. Nous avons constaté que sans l'ensemble des facteurs d'influence, les joueurs finissent par tous être mécontent. Nous allons donc voir la semaine prochaine les impacts qu'auront nos paramètres d'influences sur l'évolution de la populaion globale.
+Nous ferons également un graphique modélisant l'impact des relations entre les différents joueurs sur leur degré de satisfaction.
