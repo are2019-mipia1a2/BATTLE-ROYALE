@@ -370,4 +370,69 @@ def opinion_nieme_generation(pi,n):
     
     
     -------------------------------------------------------------------------------------------------------------------------------------
+    17.
+    
+    **Modèle représentant en points rouges les gamers confirmés et en bleu les joueurs lambda et en vert les influenceurs**
+    
+    I = H = nx.random_geometric_graph(pi, 0.125)
+
+T = dict()
+for i in range(1,pi):
+    T[i] = type_joueur(pp)
+
+EE = {'Gamer': 'red', 'Joueur lambda' : 'blue', 'Influenceur' : 'green'}
+
+plt.figure(figsize=(10, 10))
+nx.draw_networkx_nodes(I,pos,nodelist = [i for i in range(1,pi)],
+                        node_size=50,
+                        node_color= [EE[T[i]] for i in range(1,pi)])
+for i in range(1,pi) :
+    if T[i] == 'Influenceur' :
+        nx.draw_networkx_edges(H,pos,edgelist = [(i,m) for m in range(1,random.randint(25,r))], alpha = 0.4)
+nx.draw_networkx_edges(I,pos,edgelist = A, alpha = 0.4)
+plt.xlim(-0.05, 1.05)
+plt.ylim(-0.05, 1.05)
+plt.axis('off')
+plt.show()
+        
+18.
+
+** Opinion de base combiné à l'influence des liens d'amitiés**
+
+# DE LOPINION INITIALE ET DES LIENS
+
+
+II = {'Gamer' : {'Gamer' : 0.4,
+                'Joueur lambda' : 0.6 ,
+                'Influenceur' : 0 },
+     'Joueur lambda' : {'Gamer' : 0.1 ,
+                'Joueur lambda' : 0.5 ,
+                'Influenceur' : 0 },
+     'Influenceur' : {'Gamer' : 0.6,
+                'Joueur lambda' : 0.8 ,
+                'Influenceur' : 0.4 }}
+
+#OPINION PAR RAPPORT AUX LIENS
+OL = D
+for i in range(1,pi):
+    ti = T[i]
+    for j in range(1,pi):
+        tj = T[j]
+        rr = random.randint(0,1)
+        if (i,j) in I.edges() :
+            if rr <  II[ti][tj]:
+                OL[j] = OL[i]
+
+plt.figure(figsize=(10, 10))
+nx.draw_networkx_nodes(I,pos,nodelist = [i for i in range(1,pi)],
+                        node_size=50,
+                        node_color= [E[OL[i]] for i in range(1,pi)])
+for i in range(1,pi) :
+    if T[i] == 'Influenceur' :
+        nx.draw_networkx_edges(H,pos,edgelist = [(i,m) for m in range(1,random.randint(25,r))], alpha = 0.4)
+nx.draw_networkx_edges(I,pos,edgelist = A, alpha = 0.4)
+plt.xlim(-0.05, 1.05)
+plt.ylim(-0.05, 1.05)
+plt.axis('off')
+plt.show()
     
