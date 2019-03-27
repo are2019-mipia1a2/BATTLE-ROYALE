@@ -161,7 +161,8 @@ graphe_opinion(M,a)
 
 9.
 
-def type_joueur(pp):
+def type_joueur(p):
+    """retourne le statut du joueur"""
     u = np.random.random()
     s = 0
     for k in p.keys():
@@ -173,14 +174,14 @@ print(type_joueur(pp))
 
 10.
 
-def joueurs(n,pp):
+def joueurs(n,p):
     z={'Gamer' : 0,
    'Joueur lambda': 0,
     'Influenceur':0}
     for i in range(0,n):
         z[type_joueur(p)]+=1
     return z
-print(joueurs(1000,pp))
+print(joueurs(n,pp))
 
 11.
 
