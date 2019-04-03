@@ -1,5 +1,4 @@
 1.
-
 %matplotlib inline     
 # ^Sans animations
 # %matplotlib notebook 
@@ -7,21 +6,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
+import random
 
 
 2.
 
-n=1000
+n=100
 #chiffre de base dcorrespondant a 1000 personnes
 
-p = {'Content' : 0.3,
-     'Moyen content' : 0.4,
-     'Pas content' : 0.1,
-     'Très content' : 0.2}
+p = {'Pas content' : 0.1,
+     'Moyen Content': 0.4,
+     'Content': 0.3,
+     'Très content': 0.2} 
 #p=repartition aléatoire d'un avis d'une personne essayant le jeu pour la première fois
 
 pC={'Content' : 0.55,'Moyen content' : 0.15,'Pas content' : 0,'Très content' : 0.3}
-pMC={'Content' : 0.7,'Moyen content' : 0,'Pas content' : 0.3,'Très content' : 0}
+pMC={'Content' : 0.5,'Moyen content' : 0.3,'Pas content' : 0.2,'Très content' : 0}
 pTC={'Content' : 0.2,'Moyen content' : 0,'Pas content' : 0,'Très content' : 0.8}
 pPC={'Content' : 0,'Moyen content' : 0,'Pas content' : 1,'Très content' : 0}
 #p1,p2,p3,p4= probabilités qu'une personne qui a déja un avis conserve son avis
@@ -33,31 +33,35 @@ pp={'Gamer' : 0.4,
 
 potes={'Gamer':15,
       'Joueur lambda':5,
-      'Influenceur': 100000}
-
+      'Influenceur': 100}
 3.
 
 def opinion_utilisateur(p):
+    """retourne l'opinion d'un utilisateur"""
     u = np.random.random()
     s = 0
     for k in p.keys():
         s += p[k]
         if u < s:
-            return k
-        
+            if k=='Pas content':
+                return(random.randint(0,24))
+            if k=='Moyen content':
+                return(random.randint(25,49))
+            if k=='Content':
+                return(random.randint(50,74))
+            if k=='Très content':
+                return(random.randint(75,100))
 print(opinion_utilisateur(p))
 
 4.
 
 def opinion(n,p):
-    z= {'Content' : 0,
-     'Moyen content' : 0,
-     'Pas content' : 0,
-     'Très content' : 0}
-    for i in range(0,n):
-        z[opinion_utilisateur(p)]+=1
+    """retourne un dictionnaire représentant la proportion de chaque catégorie d'individu"""
+    z=dict()
+    for i in range(1,n):
+        z[i]=opinion_utilisateur(p)
     return z
-print(opinion(1000,p))
+print(opinion(10,p))
 
 5.
 
