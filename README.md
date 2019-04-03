@@ -37,3 +37,8 @@ Tout au long de cette deuxème séance, nous avons continué la programmation de
 À partir de la semaine prochaine, nous allons commencé à réfléchir à notre présentation final. Nous allons réfléchir aux différents éléments que nous allons intégrer dans notre powerpoint. Il faudra choisir les éléments synthétiques décrivant au mieux le contexte de notre projets, ainsi que les éléments de conclusions auxquelles nous sommes arrivés.
 Il faudra également souligner les données que nous avons analysés sur internet pour obtenir les proportions de nos types de joueurs ou encore de l'opinion de nos joueurs.
 
+**3 avril**
+
+Nous avons consacré cette séance à la continuation de l'élaboration de nos programmes. Nous avons décidé de modifier les paramètres initiaux concernant les nombres d'utilisateurs de chaque communautés. Nous avons fais cela dans le but d'avoir une plus grande optimisation de nos graphiques. Afin d'avoir une meilleure visibilité des graphiques nous avons diminué le nombres d'utilisateurs. 
+De plus, nous avons commencé la mise en page de notre Powerpoint, dans lequel nous présenterons notre contexte principal de notre projet. Ainsi que la présentation des paramètres, et un aperçu du résulat que nous obtenons en lançant notre programme.
+
