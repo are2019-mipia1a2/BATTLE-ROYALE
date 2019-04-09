@@ -1,0 +1,152 @@
+1.
+
+%matplotlib inline     
+# ^Sans animations
+# %matplotlib notebook 
+# ^Avec animations
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation
+import random
+
+2.
+
+n=100
+#chiffre de base dcorrespondant a 1000 personnes
+
+p = {'Pas content' : 0.1,
+     'Moyen Content': 0.4,
+     'Content': 0.3,
+     'Très content': 0.2} 
+#p=repartition aléatoire d'un avis d'une personne essayant le jeu pour la première fois
+
+
+
+pCa={'20%': 0.3,
+     '10%':0.3,
+     '30%':0.4}
+
+pCb={'20%': 0.2,
+    '10%':0.3,
+    '30%':0.5}
+     
+     
+pMCa={'20%': 0.3,
+     '10%':0.3,
+     '30%':0.4}
+
+pMCb={'20%': 0.2,
+    '10%':0.3,
+    '30%':0.5}
+      
+      
+pTCa={'20%': 0.3,
+     '10%':0.3,
+     '30%':0.4}
+
+
+pTCb={'20%': 0.2,
+    '10%':0.3,
+    '30%':0.5}
+         
+      
+pPCa={'20%': 0.3,
+     '10%':0.3,
+     '30%':0.4}
+
+
+pPCb={'20%': 0.2,
+    '10%':0.3,
+    '30%':0.5}
+
+pp={'Gamer' : 0.4,
+   'Joueur lambda': 0.599,
+   'Influenceur':0.001}
+#pp= répartition aléatoire du type de joueur arrivant sur la plateforme indiquant son taux d'attirance 
+
+
+3.
+
+def opinion_utilisateur(p):
+    """retourne l'opinion d'un utilisateur"""
+    u = np.random.random()
+    s = 0
+    for k in p.keys():
+        s += p[k]
+        if u < s:
+            if k=='Pas content':
+                return(random.randint(0,24))
+            if k=='Moyen content':
+                return(random.randint(25,49))
+            if k=='Content':
+                return(random.randint(50,74))
+            if k=='Très content':
+                return(random.randint(75,100))
+print(opinion_utilisateur(p))
+
+
+4.
+
+def opinion(n,p):
+    """retourne un dictionnaire représentant la proportion de chaque catégorie d'individu"""
+    z=dict()
+    for i in range(1,n):
+        z[i]=opinion_utilisateur(p)
+    return z
+print(opinion(10,p))
+
+
+5.
+
+def variation(m,p):
+    u = np.random.random()
+    s = 0
+    for k in p.keys():
+        s += p[k]
+        if u < s:
+            if k=='20%':
+                return int(m*0.2)+1
+            if k=='30%':
+                return int(m*0.3)+1
+            if k=='10%':
+                return int(m*0.1)+1
+print(variation(45,pPCb))
+
+
+6.
+
+def opinion_suivante(n,p,pCa,pCb,pMCa,pMCb,pTCa,pTCb,pPCa,pPCb):
+    """retourne un dictionnaire représentant la proportion d'individus à la génération n+1"""
+    z= dict()
+    zz=opinion(n,p)
+    for i in zz:
+        a=random.uniform(0,1)
+        if zz[i]>=0 and zz[i]<=24 :
+            if a>=0 and a<=0.33: 
+                zz[i]+=variation(zz[i],pPCa)
+            if a>0.33 and a<=0.66:
+                zz[i]=zz[i] - variation(zz[i],pPCb)
+                
+        if zz[i]>=25 and zz[i]<=49:
+            if a>=0 and a<=0.33: 
+                zz[i]+=variation(zz[i],pMCa)
+            if a>0.33 and a<=0.66:
+                zz[i]=zz[i] - variation(zz[i],pMCb)
+                
+        if zz[i]>=50 and zz[i]<=74 :
+            if a>=0 and a<=0.33: 
+                zz[i]+=variation(zz[i],pCa)
+            if a>0.33 and a<=0.66:
+                zz[i]=zz[i] - variation(zz[i],pCb)
+            
+        if zz[i]>=75 and zz[i]<=100 :
+            if a>=0 and a<=0.33: 
+                zz[i]+=variation(zz[i],pTCa)
+            if a>0.33 and a<=0.66:
+                zz[i]=zz[i] - variation(zz[i],pTCb)
+        if zz[i]>100:
+            zz[i]=100
+    return zz
+                
+                
+opinion_suivante(10,p,pCa,pCb,pMCa,pMCb,pTCa,pTCb,pPCa,pPCb)
