@@ -42,3 +42,6 @@ Il faudra également souligner les données que nous avons analysés sur interne
 Nous avons consacré cette séance à la continuation de l'élaboration de nos programmes. Nous avons décidé de modifier les paramètres initiaux concernant les nombres d'utilisateurs de chaque communautés. Nous avons fais cela dans le but d'avoir une plus grande optimisation de nos graphiques. Afin d'avoir une meilleure visibilité des graphiques nous avons diminué le nombres d'utilisateurs. 
 De plus, nous avons commencé la mise en page de notre Powerpoint, dans lequel nous présenterons notre contexte principal de notre projet. Ainsi que la présentation des paramètres, et un aperçu du résulat que nous obtenons en lançant notre programme.
 
+**10 avril**
+
+Aujourd'hui nous avons fini l'ensemble des programmes qu'ils nous restaient à compléter pour notre modèle. Nous avons également commencer la rédaction de notre rapport final. Nous avons fait une synthèse de l'ensemble des connaissances que nous avions apportés sur le sujet. Nous avons optimisé certains programmes qui étaient au point mais qui ne reflétaient pas convenablement les probabilités que nous avions établi. Nous avons également du réadapter un programme afin qu'il puisse mieux fonctionner et ếtre utilisé pour la modélisation de l'opinion.
